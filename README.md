@@ -20,6 +20,9 @@ This is a Rails application that uses SQLite in development and PostgreSQL in pr
 
 Install the dependencies:
 
+ruby "2.7.2"
+rails "5.2.4.6"
+
 ```
 gem install bundler
 bundle install
