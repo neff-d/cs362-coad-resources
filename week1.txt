@@ -1,0 +1,3 @@
+For this first week we got the environment set up for our application and familiarized ourselves with the project. 
+Issues encountered include using RVM to install ruby, and using the correct version of ruby.
+We also took the time to set up and get used to a shared git repository.
