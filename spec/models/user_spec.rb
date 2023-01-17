@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
 
     it "exists" do
-        User.new
+            u = User.new
+            expect(u).to be_a(User)
       end
     
     
@@ -19,4 +20,5 @@ RSpec.describe User, type: :model do
         expect(user.role).to eq("organization")
     end
 
+    it {should belong_to(:organization).class_name('Organization')}
 end
