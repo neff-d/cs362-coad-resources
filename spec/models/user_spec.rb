@@ -20,5 +20,17 @@ RSpec.describe User, type: :model do
         expect(user.role).to eq("organization")
     end
 
+    it "has an email with at least 1 character" do
+        u = User.new
+        u.email = "i" * 0
+        expect(u).to_not be_valid
+    end
+
+    it "has an email with less than 256 characters" do
+      u = User.new
+      u.email = "i" * 256
+      expect(u).to_not be_valid
+  end
+
     it {should belong_to(:organization).class_name('Organization')}
 end
