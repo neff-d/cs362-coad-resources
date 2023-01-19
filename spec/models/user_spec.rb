@@ -11,10 +11,17 @@ RSpec.describe User, type: :model do
       it "has an email" do
         email = 'example@example.com'
         user = User.new(email: email)
-        result = user.to_s
+        result = user.email.to_s
         expect(result).to eq(email)
       end
-    
+
+      it "has a password" do
+        password = 'abcd1234'
+        user = User.new(password: password)
+        result = user.password.to_s
+        expect(result).to eq(password)
+      end
+
     it "defaults to organization" do
         user = User.new()
         expect(user.role).to eq("organization")
@@ -30,7 +37,25 @@ RSpec.describe User, type: :model do
       u = User.new
       u.email = "i" * 256
       expect(u).to_not be_valid
-  end
+ `` end
+      
+    it "has a password with at least 7 characters" do
+        u = User.new
+        u.password = 'abc'
+        expect(u).to_not be_valid
+    end
+
+    it "has a password with less than 256 characters" do
+        u = User.new
+        u.password = "i" * 256
+        expect(u).to_not be_valid
+    end
+    
 
     it {should belong_to(:organization).class_name('Organization')}
+    it {should validate_length_of(:password).is_at_least(7)}
+    it {should validate_length_of(:password).is_at_most(255)}
+    it {should validate_length_of(:email).is_at_least(1)}
+    it {should validate_length_of(:email).is_at_most(255)}
+    
 end

@@ -14,6 +14,13 @@ RSpec.describe Organization, type: :model do
         expect(organization).to respond_to(:name)
       end
     
+    it "has a description" do
+        organization = Organization.new
+        organization.description = "abcdefg1234567"
+        result = organization.description.to_s
+        expect(result).to eq(organization.description)
+    end
+
     it "has a string representation that is its name" do
         name = 'Mt. Hood'
         organization = Organization.new(name: name)
@@ -34,8 +41,11 @@ RSpec.describe Organization, type: :model do
         organization.reject
         expect(organization.status).to eq("rejected")
     end
+
+
     it {should have_many(:tickets).class_name('Ticket')}
     it {should have_many(:users).class_name('User')}
     it {should have_and_belong_to_many(:resource_categories).class_name('ResourceCategory')}
+    it {should validate_length_of(:description).is_at_most(1020)}
     
 end
