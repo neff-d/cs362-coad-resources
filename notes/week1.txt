@@ -1,0 +1,6 @@
+For this first week we got the environment set up for our application and familiarized ourselves with the project.
+Environment setup included installing rbenv/RVM, npm, ruby, rails, and git. 
+Issues encountered include using RVM to install ruby, and using the correct version of ruby.
+Daniel (using WSL) faced errors with installing ruby via RVM and had to use rbenv instead, which required additional environment setup.
+Another issue we had was dealing with github authentication errors for push and commit to a repo from the CLI.
+We also took the time to set up and get used to a shared git repository and were able to take a look at the project "website".

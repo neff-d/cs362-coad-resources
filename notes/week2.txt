@@ -1,0 +1,3 @@
+This week was a lot more test writing, and some continuing problems with environment setup pertaining to openssl install directories. 
+It is interesting to be able to generally describe where to go and what to click on the site for a test.
+We have not yet set up any canned db states for testing, but next we will need to.
