@@ -16,7 +16,7 @@ RSpec.describe User, type: :model do
       end
 
       it "has a password" do
-        password = 'abcd1234'
+        password = 'organization'
         user = User.new(password: password)
         result = user.password.to_s
         expect(result).to eq(password)
