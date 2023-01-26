@@ -9,7 +9,7 @@ RSpec.describe ResourceCategory, type: :model do
     it {should have_and_belong_to_many(:organizations).class_name('Organization')}
     it {should have_many(:tickets).class_name('Ticket')}
     
-    it "should be less than 255 characters long" do
+    it "should be less than 256 characters long" do
         r = ResourceCategory.new
         r.name = "i" * 256
         expect(r).to_not be_valid
