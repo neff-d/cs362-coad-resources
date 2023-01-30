@@ -1,0 +1,3 @@
+This week was mostly dedicated to getting our api keys for captcha, getting or .env set up, and then using both of those in order to start using the site as a user.
+Being able to access the site like that opens a lot more understanding and makes the project tangible, but there are a lot of weeds to root through as well. 
+As for testing, we are a little short of the 100% goal at 52.66% coverage, but we are working on it. Hopefully, that will not take all of next week.
