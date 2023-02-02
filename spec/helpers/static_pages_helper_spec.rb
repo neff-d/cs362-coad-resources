@@ -12,4 +12,9 @@ require 'rails_helper'
 # end
 RSpec.describe StaticPagesHelper, type: :helper do
   # pending "add some examples to (or delete) #{__FILE__}"
+
+  it 'exists' do
+      expect(StaticPagesHelper.inspect).to eq('StaticPagesHelper')
+  end
+  
 end

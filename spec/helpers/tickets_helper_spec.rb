@@ -12,4 +12,8 @@ require 'rails_helper'
 # end
 RSpec.describe TicketsHelper, type: :helper do
 
+    it 'exists' do
+        expect(TicketsHelper.inspect).to eq('TicketsHelper')
+    end
+
 end
