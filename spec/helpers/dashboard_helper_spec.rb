@@ -12,4 +12,8 @@ require 'rails_helper'
 # end
 RSpec.describe DashboardHelper, type: :helper do
 
+    it 'exists' do
+        expect(DashboardHelper.inspect).to eq('DashboardHelper')
+    end
+    
 end

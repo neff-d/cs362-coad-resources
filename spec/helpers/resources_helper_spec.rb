@@ -12,4 +12,7 @@ require 'rails_helper'
 # end
 RSpec.describe ResourcesHelper, type: :helper do
   # pending "add some examples to (or delete) #{__FILE__}"
+  it 'exists' do
+      expect(ResourcesHelper.inspect).to eq('ResourcesHelper')
+  end
 end
