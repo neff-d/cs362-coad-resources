@@ -5,17 +5,17 @@ require 'rails_helper'
 RSpec.describe Organization, type: :model do
 
     it "exists" do
-       o = Organization.new
+       o = create(:defaultOrganization)
        expect(o).to be_a(Organization)
       end
 
     it "has a name" do
-        organization = Organization.new
+        organization = create(:defaultOrganization)
         expect(organization).to respond_to(:name)
       end
     
     it "has a description" do
-        organization = Organization.new
+        organization = create(:defaultOrganization)
         organization.description = "abcdefg1234567"
         result = organization.description.to_s
         expect(result).to eq(organization.description)
@@ -23,21 +23,22 @@ RSpec.describe Organization, type: :model do
 
     it "has a string representation that is its name" do
         name = 'Mt. Hood'
-        organization = Organization.new(name: name)
+        organization = create(:defaultOrganization)
+        organization.name = name
         result = organization.to_s
         expect(result).to eq(name)
       end
     it "is submitted" do
-        organization = Organization.new()
+        organization = create(:defaultOrganization)
         expect(organization.status).to eq("submitted")
     end
     it "is approved" do
-        organization = Organization.new()
+        organization = create(:defaultOrganization)
         organization.approve
         expect(organization.status).to eq("approved")
     end
     it "is rejected" do
-        organization = Organization.new()
+        organization = create(:defaultOrganization)
         organization.reject
         expect(organization.status).to eq("rejected")
     end
