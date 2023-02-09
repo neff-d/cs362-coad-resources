@@ -23,4 +23,18 @@ FactoryBot.define do
         password { 'password' }
         admin { true }
     end
+
+    factory :defaultTicket, class: Ticket do
+        closed { false }
+        phone {'+15555555555'}
+        resource_category_id { 76 }
+    end
+
+    factory :resource_category, class: ResourceCategory do
+        name { 'test rc'}
+    end    
+
+    factory :region, class: Region do
+        name { 'test region'}
+    end
 end

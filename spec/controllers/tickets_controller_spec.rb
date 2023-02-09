@@ -6,4 +6,6 @@ RSpec.describe TicketsController, type: :controller do
         tc = TicketsController.new
         expect(tc).to be_a(TicketsController)
     end
+
+ 
 end

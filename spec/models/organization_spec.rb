@@ -49,4 +49,5 @@ RSpec.describe Organization, type: :model do
     it {should have_and_belong_to_many(:resource_categories).class_name('ResourceCategory')}
     it {should validate_length_of(:description).is_at_most(1020)}
     
+    
 end

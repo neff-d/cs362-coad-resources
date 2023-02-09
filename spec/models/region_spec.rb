@@ -18,5 +18,6 @@ RSpec.describe Region, type: :model do
     result = region.to_s
     expect(result).to eq(name)
   end
+
   it {should have_many(:tickets).class_name('Ticket')}
 end
