@@ -19,7 +19,7 @@ RSpec.describe User, type: :model do
       
       it "has an string email" do
         user = create(:defaultUser) 
-        expect(user.email.to_s).to eq('example@example.com')
+        expect(user.to_s).to eq('example@example.com')
       end
 
       it "has a password" do
