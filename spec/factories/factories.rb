@@ -32,6 +32,7 @@ FactoryBot.define do
 
     factory :resource_category, class: ResourceCategory do
         name { 'test rc'}
+        
     end    
 
     factory :region, class: Region do
