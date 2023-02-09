@@ -5,10 +5,10 @@ require 'rails_helper'
 RSpec.describe Ticket, type: :model do
 
     setup do
-        rc = create(:resource_category, name: 'Test Resource Category')
+        rc = create(:resource_category, name: 'Test RC')
         r = create(:region, name: 'Test Region')
         @openTicket = create(:defaultTicket, name: 'Test Open', resource_category: rc, region: r, resource_category_id: 76)
-        @closedTicket = create(:defaultTicket, name: 'Test Closed', resource_category: rc, region: r, resource_category_id: 76, closed: true)
+        @closedTicket = create(:defaultTicket2, name: 'Test Closed', resource_category: rc, region: r, resource_category_id: 76, closed: true)
     end
 
     it "exists" do
