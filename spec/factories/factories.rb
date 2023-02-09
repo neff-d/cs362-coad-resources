@@ -39,10 +39,10 @@ FactoryBot.define do
 
     factory :resource_category, class: ResourceCategory do
         name { 'test rc'}
-        organizations << create(:defaultOrganization)
-        organizations << create(:defaultOrganization)
-        tickets << create(:defaultTicket)
-        tickets << create(:defaultTicket2)
+        organizations { create(:defaultOrganization) }
+        #organizations << create(:defaultOrganization)
+        tickets { create(:defaultTicket) }
+        #tickets << create(:defaultTicket2)
 
         resource_category.activate
 
@@ -50,8 +50,8 @@ FactoryBot.define do
 
     factory :region, class: Region do
         name { 'test region'}
-        tickets << create(:defaultTicket)
-        tickets << create(:defaultTicket2)
+        tickets { create(:defaultTicket) }
+        #tickets << create(:defaultTicket2)
     end
 
     
