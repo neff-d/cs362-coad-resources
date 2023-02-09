@@ -39,21 +39,14 @@ FactoryBot.define do
 
     factory :resource_category, class: ResourceCategory do
         name { 'test rc'}
-        organizations { create(:defaultOrganization) }
-        #organizations << create(:defaultOrganization)
-        tickets { create(:defaultTicket) }
-        #tickets << create(:defaultTicket2)
-
-        #resource_category.activate
-
+        organizations { create(:defaultOrganization2) }
+        tickets { create(:defaultTicket2) }
     end    
 
     factory :region, class: Region do
         name { 'test region'}
-        tickets { create(:defaultTicket) }
-        #tickets << create(:defaultTicket2)
+        tickets { create(:defaultTicket2) }
     end
-
     
     factory :defaultTicket, class: Ticket do
         closed { false }
@@ -68,9 +61,6 @@ FactoryBot.define do
         closed { false }
         phone {'+15555555555'}
         id { 2 }
-        organization { create(:defaultOrganization2) }
-        resource_category { create(:resource_category) }
-        region { create(:region) }
     end
 
 end
