@@ -9,9 +9,8 @@ RSpec.describe User, type: :model do
     
     
       it "has an email" do
-        user = create(:defaultUser)
-        result = user.email.to_s
-        expect(result).to eq('example@example.com')
+        user = create(:defaultUser) 
+        expect(user.email.to_s).to eq('example@example.com')
       end
 
       it "has a password" do

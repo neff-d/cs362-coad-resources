@@ -19,5 +19,8 @@ RSpec.describe Region, type: :model do
     expect(result).to eq(name)
   end
 
+  it "can be unspecified" do
+    expect(Region.unspecified.name).to be('Unspecified')
+
   it {should have_many(:tickets).class_name('Ticket')}
 end
