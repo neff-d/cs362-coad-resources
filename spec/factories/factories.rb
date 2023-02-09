@@ -44,7 +44,7 @@ FactoryBot.define do
         tickets { create(:defaultTicket) }
         #tickets << create(:defaultTicket2)
 
-        resource_category.activate
+        #resource_category.activate
 
     end    
 
