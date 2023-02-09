@@ -31,7 +31,7 @@ FactoryBot.define do
     end
 
     factory :resource_category, class: ResourceCategory do
-        name { 'test rc'}
+        name { 'test rc'}       
         
     end    
 
