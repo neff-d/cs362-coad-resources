@@ -6,9 +6,18 @@ RSpec.describe User, type: :model do
             u = User.new
             expect(u).to be_a(User)
       end
-    
-    
+
       it "has an email" do
+        user = create(:defaultUser)
+        expect(user).to respond_to(:email)
+      end
+      
+      it "has a string function" do
+        user = create(:defaultUser)
+        expect(user).to respond_to(:to_s)
+      end
+      
+      it "has an string email" do
         user = create(:defaultUser) 
         expect(user.email.to_s).to eq('example@example.com')
       end
