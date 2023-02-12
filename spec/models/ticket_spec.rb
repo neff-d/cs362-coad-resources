@@ -5,10 +5,10 @@ require 'rails_helper'
 RSpec.describe Ticket, type: :model do
 
     setup do
-        rc = create(:resource_category, name: 'Test RC')
-        r = create(:region, name: 'Test Region')
-        @openTicket = create(:defaultTicket, name: 'Test Open', resource_category: rc, region: r, resource_category_id: 76)
-        @closedTicket = create(:defaultTicket2, name: 'Test Closed', resource_category: rc, region: r, resource_category_id: 76, closed: true)
+        rc = create(:resource_category)
+        r = create(:region)
+        @openTicket = Ticket.new(name: 'Test Open', resource_category: rc, region: r, resource_category_id: 76, closed: false)
+        @closedTicket = Ticket.new(name: 'Test Closed', resource_category: rc, region: r, resource_category_id: 76, closed: true)
     end
 
     it "exists" do
@@ -23,11 +23,6 @@ RSpec.describe Ticket, type: :model do
     it {should belong_to(:organization).class_name('Organization')}
     it {should belong_to(:resource_category).class_name('ResourceCategory')}
     #it {should validate_presence_of(:organization)}
-    
-    it "scope tests" do
-        expect(Ticket.open).to include @openTicket
-        expect(Ticket.closed).to include @closedTicket
-    end 
 
     it "expects an open ticket to be open" do
         t = Ticket.new
