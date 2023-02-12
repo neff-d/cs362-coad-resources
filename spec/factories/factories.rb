@@ -18,7 +18,7 @@ FactoryBot.define do
     factory :adminUser, class: User do
         email { 'admin@example.com' }
         password { 'password' }
-        admin { true }
+        role { :admin }
     end
 
     factory :resource_category, class: ResourceCategory do
