@@ -1,0 +1,3 @@
+Still, the model/controller/helper model is making total understanding difficult, but overall the testing is coming along and factories are being built. I think there is still some room for
+modularity in factories, as I have found a need for custom instances instead of factories in some tests. Next week, I want to start diving into some of the actual app code that is commented out,
+as it it reducing our coverage for unimplemented code.
