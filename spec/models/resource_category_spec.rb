@@ -19,4 +19,18 @@ RSpec.describe ResourceCategory, type: :model do
         r.name = "i" * 0
         expect(r).to_not be_valid
     end
+
+    it "activates" do
+        r = ResourceCategory.new
+        r.activate
+
+        expect(r.active).to be true
+    end
+
+    it "deactivates" do
+        r = ResourceCategory.new
+        r.deactivate
+
+        expect(r.active).to be false
+    end
 end
