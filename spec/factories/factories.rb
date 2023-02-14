@@ -7,9 +7,21 @@ FactoryBot.define do
         primary_name { 'Default' }
         secondary_name { 'Organization' }
         secondary_phone { '555-555-5555' }
+        liability_insurance { true }
+        title { 'title' }
+        transportation { :yes }
+
+        trait :approved do
+            status { 0 }
+        end
+
+        trait :rejected do
+            status { 2 }
+        end
     end
 
     factory :defaultUser, class: User do
+        before(:create) { |user| user.skip_confirmation! }
         email { 'example@example.com' }
         password { 'password' }
         organization { Organization.new(name: 'Default Organization', description: 'Default Organization', email: 'example@example@gmail.com', phone: '555-555-5555', primary_name: 'Default', secondary_name: 'Organization', secondary_phone: '555-555-5555') }
