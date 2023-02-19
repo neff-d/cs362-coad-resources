@@ -60,7 +60,7 @@ RSpec.describe RegionsController, type: :controller do
             it {
                 # r = build(:region)
                 # post(:create, params: { region: attributes_for(:region) })
-                # expect(respone).to be_successful
+                # expect(response).to be_successful
             }
             
         end
