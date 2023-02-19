@@ -32,5 +32,16 @@ RSpec.describe ResourceCategory, type: :model do
         r.deactivate
 
         expect(r.active).to be false
+        expect(r.inactive?).to be true
+    end
+
+    it "has a name" do
+        r = ResourceCategory.new
+        r.name = "test name"
+        expect(r.to_s).to be_a String
+    end
+
+    it "can be unspecified" do
+        expect(ResourceCategory.unspecified.name).to eq('Unspecified')
     end
 end
