@@ -1,0 +1,2 @@
+(Daniel) We're at 100% coverage for the models now! I just pushed the changes. I've got a pretty big project to finish up for Operating Systems tomorrow but if I get some extra time 
+I'll go back and clean those tests up so that it's using the factory instead of just a bunch of instantiation tests
