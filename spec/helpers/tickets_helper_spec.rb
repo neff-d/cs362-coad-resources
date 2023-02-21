@@ -13,8 +13,11 @@ require 'rails_helper'
 RSpec.describe TicketsHelper, type: :helper do
 
     it 'exists' do
-        puts TicketsHelper.inspect
         expect(TicketsHelper.inspect).to eq('TicketsHelper')
     end
 
+    it 'handles phone numbers' do
+        n = '5033334444'
+        expect(helper.format_phone_number(n)).to eq('+15033334444')
+    end
 end
