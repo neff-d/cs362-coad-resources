@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Ticket, type: :model do
 
-    setup do
+    before(:each) do
         rc = create(:resource_category)
         r = create(:region)
         @openTicket = Ticket.new(name: 'Test Open', resource_category: rc, region: r, resource_category_id: 76, closed: false)
@@ -14,8 +14,8 @@ RSpec.describe Ticket, type: :model do
     it "exists" do
         t = Ticket.new
         expect(t).to be_a(Ticket)
-       end
-
+    end
+    
     it {should validate_length_of(:name).is_at_least(1)}
     it {should validate_length_of(:name).is_at_most(255)}
     it {should validate_length_of(:description).is_at_most(1020)}
