@@ -39,7 +39,7 @@ FactoryBot.define do
 
     factory :region, class: Region do
         name { 'test region'}
-        #tickets { Ticket.new(name: 'test ticket', phone: '+15555555555', closed: false, organization: Organization.new(name: 'Default Organization', description: 'Default Organization', email: 'example@example@gmail.com', phone: '555-555-5555', primary_name: 'Default', secondary_name: 'Organization', secondary_phone: '555-555-5555'), resource_category: ResourceCategory.new(name: 'test rc')) }
+        # tickets { Ticket.new(name: 'test ticket', phone: '+15555555555', closed: false, organization: Organization.new(name: 'Default Organization', description: 'Default Organization', email: 'example@example@gmail.com', phone: '555-555-5555', primary_name: 'Default', secondary_name: 'Organization', secondary_phone: '555-555-5555'), resource_category: ResourceCategory.new(name: 'test rc')) }
     end
     
     factory :defaultTicket, class: Ticket do
