@@ -17,6 +17,12 @@ RSpec.describe RegionsController, type: :controller do
         expect(rc.index).to be_a(ActiveRecord::Relation)
     end
 
+    it "creates a new region" do
+        rc = RegionsController.new
+        r = rc.new
+        expect(r).to be_a(Region)
+    end
+
     context 'as a logged-in user' do
         let(:user) { create(:defaultUser) }
         before(:each) { sign_in(user) }
@@ -58,11 +64,17 @@ RSpec.describe RegionsController, type: :controller do
             let(:region) { create(:region) }
 
             it {
-                # r = build(:region)
-                # post(:create, params: { region: attributes_for(:region) })
-                # expect(response).to be_successful
+                  r = build(:region)
+                  t = build(:defaultTicket)
+                  post(:create, params: { region: attributes_for(:region) })
+                  expect(response).to be_successful
             }
             
+        end
+
+        describe "DELETE #destroy" do
+        
+
         end
     end
 
