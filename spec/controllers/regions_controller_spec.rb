@@ -61,19 +61,21 @@ RSpec.describe RegionsController, type: :controller do
         end
 
         describe "POST #create" do
-            let(:region) { create(:region) }
 
             it {
-                  r = build(:region)
-                  t = build(:defaultTicket)
                   post(:create, params: { region: attributes_for(:region) })
-                  expect(response).to be_successful
+                  expect(response).to redirect_to(regions_path)
             }
             
         end
 
         describe "DELETE #destroy" do
-        
+            let(:region) { create(:region) }
+
+            it {
+                delete(:destroy, params: { id: region.id })
+                expect(response).to redirect_to(regions_path)
+            }
 
         end
     end
