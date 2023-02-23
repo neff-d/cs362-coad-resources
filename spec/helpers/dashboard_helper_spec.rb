@@ -12,6 +12,9 @@ require 'rails_helper'
 # end
 RSpec.describe DashboardHelper, type: :helper do
 
+    # this is a way to use a fake for these tests:
+    # let(:user) { instance_double('User', admin?: false) }
+
     it 'exists' do
         expect(DashboardHelper.inspect).to eq('DashboardHelper')
     end
@@ -44,6 +47,6 @@ RSpec.describe DashboardHelper, type: :helper do
         expect(dashboard_for(u)).to eq('organization_approved_dashboard')
     end
 
-    
+    # let(:user) { instance_double('User', admin?: false, organization: Organization.new(status?: approved)) }
     
 end

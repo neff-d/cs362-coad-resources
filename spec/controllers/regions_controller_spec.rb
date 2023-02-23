@@ -66,7 +66,38 @@ RSpec.describe RegionsController, type: :controller do
                   post(:create, params: { region: attributes_for(:region) })
                   expect(response).to redirect_to(regions_path)
             }
-            
+
+            it {
+                expect_any_instance_of(Region).to receive(:save).and_return(false)
+
+                post(:create, params: { region: attributes_for(:region) })
+                expect(response).to be_successful
+            }            
+        end
+
+        describe "GET #edit" do
+
+            let(:region) { create(:region) }
+            it { expect(get(:edit, params: {id: region.id } )).to be_successful }
+        end
+
+        describe "PATCH #update" do
+
+            let(:region) { create(:region) }
+
+            it {               
+                expect(patch(:update, params: { id: region.id, region: attributes_for(:region) } )).to redirect_to(@region)
+            }           
+        end
+
+        describe "PUT #update" do
+
+            let(:region) { create(:region) }
+
+            it {
+                expect_any_instance_of(Region).to receive(:update).and_return(false)
+                expect(patch(:update, params: { id: region.id, region: attributes_for(:region) } )).to be_successful
+            }
         end
 
         describe "DELETE #destroy" do
@@ -76,7 +107,6 @@ RSpec.describe RegionsController, type: :controller do
                 delete(:destroy, params: { id: region.id })
                 expect(response).to redirect_to(regions_path)
             }
-
         end
     end
 
