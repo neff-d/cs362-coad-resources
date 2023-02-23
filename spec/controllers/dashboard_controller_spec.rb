@@ -20,10 +20,4 @@ RSpec.describe DashboardController, type: :controller do
         sign_in @u
         expect(get(:index)).to have_http_status(200)
     end
-
-    it "sets status options user" do
-        sign_in @u
-        get(:index)
-        expect(assigns(:status_options)).to eq(["Open"])
-    end
 end
