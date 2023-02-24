@@ -8,6 +8,8 @@ include Devise::Test::ControllerHelpers
         @u = create(:defaultUser)
         @admin = create(:adminUser)
         @dc = DashboardController.new
+
+        @u.organization.tickets << create(:defaultTicket)
     end
 
     it "exists" do
@@ -23,6 +25,8 @@ include Devise::Test::ControllerHelpers
         sign_in @u
         expect(get(:index)).to have_http_status(200)
     end
+
+    #//def status_options
 
     it "can recieve :current.user.admin?" do
         allow(@dc).to receive(:current_user).and_return(@admin)
@@ -64,4 +68,32 @@ include Devise::Test::ControllerHelpers
             expect(@dc.instance_variable_get(:@status_options)).to eq(['Open', 'My Captured', 'My Closed'])
         end
 
+        #//def tickets
+
+        it "can recieve :params[:status]" do
+            allow(@dc).to receive(:params).and_return({:status => "Open"})
+            expect(@dc.params[:status]).to eq("Open")
+        end
+
+        it "when 'Open'" do
+            allow(@dc).to receive(:params).and_return({:status => "Open"})
+            allow(@dc).to receive(:current_user).and_return(@u)
+            
+            @dc.index
+
+            expect(@dc.instance_variable_get(:@tickets).name).to eq(Ticket.open.name)
+        end
+
+        it "can return user tickets" do
+            allow(@dc).to receive(:params).and_return({:status => ['Open', 'My Captured', 'My Closed']})
+            @u.organization.approve
+
+            #@u.organization.tickets << create(:defaultTicket)
+            
+            allow(@dc).to receive(:current_user).and_return(@u)
+
+            @dc.index
+
+            expect(@dc.instance_variable_get(:@tickets).name).to eq(Ticket.organization(@u.organization&.id).name)
+        end
 end

@@ -18,6 +18,7 @@ FactoryBot.define do
         trait :rejected do
             status { 2 }
         end
+
     end
 
     factory :defaultUser, class: User do
@@ -48,7 +49,7 @@ FactoryBot.define do
         name { 'test ticket 1'}
         id { 1 }
         organization {  Organization.new(name: 'Default Organization', description: 'Default Organization', email: 'example@example@gmail.com', phone: '555-555-5555', primary_name: 'Default', secondary_name: 'Organization', secondary_phone: '555-555-5555') }
-        resource_category { ResourceCategory.new(name: 'test rc22') }
+        resource_category { create(:resource_category) }
         region { create(:region) }
     end
 end
