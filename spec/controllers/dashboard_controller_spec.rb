@@ -74,15 +74,64 @@ include Devise::Test::ControllerHelpers
             allow(@dc).to receive(:params).and_return({:status => "Open"})
             expect(@dc.params[:status]).to eq("Open")
         end
+        
+        # for status in ['Open', 'Closed', 'Captured', 'My Captured', 'My Closed'] do
 
-        it "when 'Open'" do
-            allow(@dc).to receive(:params).and_return({:status => "Open"})
+        #     it "can return #{status} tickets" do
+        #         allow(@dc).to receive(:params).and_return({:status => status})
+        #         allow(@dc).to receive(:current_user).and_return(@u)
+                
+        #         @dc.index
+
+        #         expect(@dc.instance_variable_get(:@pagy).items).to eq(10)
+        #     end
+        # end
+
+        it "can return Open tickets" do
+            allow(@dc).to receive(:params).and_return({:status => 'Open'})
             allow(@dc).to receive(:current_user).and_return(@u)
-            
+
             @dc.index
 
             expect(@dc.instance_variable_get(:@tickets).name).to eq(Ticket.open.name)
         end
+
+        it "can return Closed tickets" do
+            allow(@dc).to receive(:params).and_return({:status => 'Closed'})
+            allow(@dc).to receive(:current_user).and_return(@u)
+
+            @dc.index
+
+            expect(@dc.instance_variable_get(:@tickets).name).to eq(Ticket.closed.name)
+        end
+
+        it "can return Captured tickets" do
+            allow(@dc).to receive(:params).and_return({:status => 'Captured'})
+            allow(@dc).to receive(:current_user).and_return(@u)
+
+            @dc.index
+
+            expect(@dc.instance_variable_get(:@tickets).name).to eq(Ticket.organization(@u.organization&.id).name)
+        end
+
+        it "can return My Captured tickets" do
+            allow(@dc).to receive(:params).and_return({:status => 'My Captured'})
+            allow(@dc).to receive(:current_user).and_return(@u)
+
+            @dc.index
+
+            expect(@dc.instance_variable_get(:@tickets).name).to eq(Ticket.organization(@u.organization&.id).name)
+        end
+
+        it "can return My Closed tickets" do
+            allow(@dc).to receive(:params).and_return({:status => 'My Closed'})
+            allow(@dc).to receive(:current_user).and_return(@u)
+
+            @dc.index
+
+            expect(@dc.instance_variable_get(:@tickets).name).to eq(Ticket.closed_organization(@u.organization&.id).name)
+        end
+
 
         it "can return user tickets" do
             allow(@dc).to receive(:params).and_return({:status => ['Open', 'My Captured', 'My Closed']})
