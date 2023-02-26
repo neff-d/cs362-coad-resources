@@ -77,8 +77,7 @@ RSpec.describe ResourceCategoriesController, type: :controller do
             it {
                 expect_any_instance_of(ResourceCategory).to receive(:update).and_return(false)
                 expect(patch(:update, params: { id: resource_category.id, resource_category: attributes_for(:resource_category) } )).to be_successful
-            }
-
+            }   
         end
 
         describe "PATCH #activate" do
@@ -96,7 +95,6 @@ RSpec.describe ResourceCategoriesController, type: :controller do
                 patch(:activate, params: { id: resource_category.id } )
                 expect(:alert).to eq(:alert) { 'There was a problem activating the category.'}
             }
-
         end
 
         describe "PATCH #deactivate" do
@@ -114,7 +112,6 @@ RSpec.describe ResourceCategoriesController, type: :controller do
                 patch(:deactivate, params: { id: resource_category.id } )
                 expect(:alert).to eq(:alert) { 'There was a problem deactivating the category.' }
             }
-
         end
 
         describe "DELETE #destroy" do

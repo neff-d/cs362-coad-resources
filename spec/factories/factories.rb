@@ -1,6 +1,6 @@
 FactoryBot.define do
     factory :defaultOrganization, class: Organization do
-        name { 'Default Organization' }
+        sequence (:name) { |n| "Test Organization #{n}" }
         description { 'Default Organization' }
         email { 'org@example.com' }
         phone { '555-555-5555' }
@@ -34,7 +34,7 @@ FactoryBot.define do
     end
 
     factory :resource_category, class: ResourceCategory do
-        name { 'test rc'}
+        sequence (:name) { |n| "Test Resource Category #{n}" }
     end    
 
     factory :region, class: Region do
