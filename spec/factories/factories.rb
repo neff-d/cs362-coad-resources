@@ -52,4 +52,14 @@ FactoryBot.define do
         resource_category { create(:resource_category) }
         region { create(:region) }
     end
+
+    factory :defaultTicket2, class: Ticket do
+        closed { false }
+        phone {'+15555555555'}
+        name { 'test ticket 2'}
+        id { 2 }
+        organization {  Organization.new(name: 'Default Organization', description: 'Default Organization', email: 'example@example.com', phone: '555-555-5555', primary_name: 'Default', secondary_name: 'Organization', secondary_phone: '555-555-5555') }
+        resource_category { create(:resource_category) }
+        region { create(:region) }
+    end
 end
