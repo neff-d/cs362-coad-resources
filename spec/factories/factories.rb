@@ -2,7 +2,7 @@ FactoryBot.define do
     factory :defaultOrganization, class: Organization do
         sequence (:name) { |n| "Test Organization #{n}" }
         description { 'Default Organization' }
-        email { 'org@example.com' }
+        sequence (:email) { |n| "example#{n}@example.com" }
         phone { '555-555-5555' }
         primary_name { 'Default' }
         secondary_name { 'Organization' }
