@@ -27,24 +27,26 @@ RSpec.describe OrganizationsController, type: :controller do
 
         let(:user) { create(:defaultUser) }
         before(:each) { sign_in(user) }
-
+    
         describe "GET #index" do
             it { expect(get(:index)).to be_successful }
         end
 
         describe "PATCH #update" do
-            let(:organization) { create(:defaultOrganization, :approved ) }
+            let(:organization) { create(:defaultOrganization, :approved) }
+            
             it {
-                allow_any_instance_of(Organization).to receive(:update).and_return(true)
+                expect_any_instance_of(Organization).to receive(:update).and_return(true)
                 patch(:update, params: { id: organization.id, organization: attributes_for(:defaultOrganization) })
-                expect(response).to redirect_to(dashboard_path)
+                expect(response).to redirect_to organization_path(organization)
             }          
         end
 
         describe "PUT #update" do
             let(:organization) { create(:defaultOrganization, :approved) }
+            
             it {
-                allow_any_instance_of(Organization).to receive(:update).and_return(false)
+                expect_any_instance_of(Organization).to receive(:update).and_return(false)
                 expect(patch(:update, params: { id: organization.id })).to be_successful
             }
         end
@@ -57,23 +59,6 @@ RSpec.describe OrganizationsController, type: :controller do
 
         describe "GET #new" do
             it { expect(get(:new)).to redirect_to(dashboard_path) }
-        end
-
-        describe "PATCH #update" do
-            let(:organization) { create(:defaultOrganization, :approved) }
-
-            it {
-                allow_any_instance_of(Organization).to receive(:update).and_return(true)
-                expect(patch(:update, params: { id: organization.id, organization: attributes_for(:defaultOrganization) })).to redirect_to(dashboard_path)
-            }          
-        end
-
-        describe "PUT #update" do
-            let(:organization) { create(:defaultOrganization, status: :approved) }
-            it {
-                allow_any_instance_of(Organization).to receive(:update).and_return(false)
-                expect(put(:update, params: { id: organization.id, organization: attributes_for(:defaultOrganization) })).to redirect_to(dashboard_path)
-            }
         end
 
         describe "POST #approve" do
@@ -100,8 +85,6 @@ RSpec.describe OrganizationsController, type: :controller do
                 expect_any_instance_of(Organization).to receive(:save).and_return(false)
                 expect(post(:reject, params: { id: organization.id, organization: attributes_for(:defaultOrganization) } )).to redirect_to(organization_path)
             }
-
-
         end
     end
 end

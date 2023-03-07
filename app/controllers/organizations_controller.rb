@@ -35,8 +35,10 @@ class OrganizationsController < ApplicationController
 
   def update
     if @organization.update(organization_params)
+      puts "11111"
       redirect_to organization_path(id: @organization.id)
     else
+      puts "22222"
       render :edit
     end
   end
