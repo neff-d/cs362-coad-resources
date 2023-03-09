@@ -35,10 +35,8 @@ class OrganizationsController < ApplicationController
 
   def update
     if @organization.update(organization_params)
-      puts "11111"
       redirect_to organization_path(id: @organization.id)
     else
-      puts "22222"
       render :edit
     end
   end
@@ -97,7 +95,8 @@ class OrganizationsController < ApplicationController
   end
 
   def verify_approved
-    redirect_to dashboard_path unless current_user.try(:organization).try(:approved?)
+    
+     redirect_to dashboard_path unless current_user.try(:organization).try(:approved?)
   end
 
   def verify_user

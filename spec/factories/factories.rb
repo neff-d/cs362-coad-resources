@@ -25,6 +25,10 @@ FactoryBot.define do
         before(:create) { |user| user.skip_confirmation! }
         email { 'example@example.com' }
         password { 'password' }
+               
+        trait :defaultApprovedOrganization do
+            organization { create(:defaultOrganization, :approved) }
+        end
         organization { Organization.new(name: 'Default Organization', description: 'Default Organization', email: 'example@example@gmail.com', phone: '555-555-5555', primary_name: 'Default', secondary_name: 'Organization', secondary_phone: '555-555-5555') }
     end
 

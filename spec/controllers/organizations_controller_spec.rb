@@ -30,24 +30,27 @@ RSpec.describe OrganizationsController, type: :controller do
     
         describe "GET #index" do
             it { expect(get(:index)).to be_successful }
-        end
+        end       
+    end
+    context "as a default approved organization" do
+
+        let(:user) { create(:defaultUser, :defaultApprovedOrganization) }
+        before(:each) { sign_in(user) }
 
         describe "PATCH #update" do
-            let(:organization) { create(:defaultOrganization, :approved) }
             
             it {
-                expect_any_instance_of(Organization).to receive(:update).and_return(true)
-                patch(:update, params: { id: organization.id, organization: attributes_for(:defaultOrganization) })
-                expect(response).to redirect_to organization_path(organization)
+                patch(:update, params: { id: user.organization.id, organization: attributes_for(:defaultOrganization)  })
+                expect(response).to redirect_to organization_path(user.organization)
             }          
         end
 
         describe "PUT #update" do
-            let(:organization) { create(:defaultOrganization, :approved) }
-            
+                      
             it {
                 expect_any_instance_of(Organization).to receive(:update).and_return(false)
-                expect(patch(:update, params: { id: organization.id })).to be_successful
+                patch(:update, params: { id: user.organization.id, organization: attributes_for(:defaultOrganization) })
+                expect(response).to be_successful
             }
         end
     end
