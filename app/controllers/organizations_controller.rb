@@ -17,7 +17,7 @@ class OrganizationsController < ApplicationController
 
   def create
     @new_organization = Organization.new(organization_params.merge(status: :submitted))
-
+    
     current_user.organization = @new_organization if @new_organization.valid?
 
     if @new_organization.save && current_user.save
@@ -91,12 +91,11 @@ class OrganizationsController < ApplicationController
   end
 
   def verify_unapproved
-    redirect_to dashboard_path unless current_user.organization? && current_user.organization.nil?
+    redirect_to dashboard_path unless current_user.organization? && current_user.organization.nil?  
   end
 
   def verify_approved
-    
-     redirect_to dashboard_path unless current_user.try(:organization).try(:approved?)
+    redirect_to dashboard_path unless current_user.try(:organization).try(:approved?)
   end
 
   def verify_user

@@ -32,6 +32,7 @@ RSpec.describe OrganizationsController, type: :controller do
             it { expect(get(:index)).to be_successful }
         end       
     end
+
     context "as a default approved organization" do
 
         let(:user) { create(:defaultUser, :defaultApprovedOrganization) }
@@ -53,6 +54,41 @@ RSpec.describe OrganizationsController, type: :controller do
                 expect(response).to be_successful
             }
         end
+    end
+
+    context "as a default unapproved organization" do
+
+        let(:user) { create(:defaultUser) }
+        before(:each) { sign_in(user) }
+
+        describe "POST #create" do
+            it{
+                user.organization = nil
+                
+                
+
+                allow_any_instance_of(Organization).to receive(:save).and_return(true)
+                allow_any_instance_of(User).to receive(:save).and_return(true)
+                allow_any_instance_of(Organization).to receive(:email).and_return('fakeEmail@example.com')
+
+                post(:create, params: { id: 2, organization: attributes_for(:defaultOrganization) })
+                expect(response).to redirect_to(organization_application_submitted_path)
+            }
+
+            it {
+                user.organization = nil
+
+                allow_any_instance_of(Organization).to receive(:save).and_return(false)
+                allow_any_instance_of(User).to receive(:save).and_return(false)
+                allow_any_instance_of(Organization).to receive(:email).and_return('fakeEmail@example.com')
+
+                post(:create, params: { id: 2, organization: attributes_for(:defaultOrganization) })
+                expect(response).to be_successful
+            }
+
+        end
+
+
     end
 
     context "as an admin" do

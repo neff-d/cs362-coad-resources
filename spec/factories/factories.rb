@@ -29,6 +29,11 @@ FactoryBot.define do
         trait :defaultApprovedOrganization do
             organization { create(:defaultOrganization, :approved) }
         end
+
+        trait :defaultUnapprovedOrganization do
+            organization { create(:defaultOrganization, :rejected) }
+        end
+
         organization { Organization.new(name: 'Default Organization', description: 'Default Organization', email: 'example@example@gmail.com', phone: '555-555-5555', primary_name: 'Default', secondary_name: 'Organization', secondary_phone: '555-555-5555') }
     end
 
