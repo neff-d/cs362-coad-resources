@@ -65,11 +65,9 @@ RSpec.describe OrganizationsController, type: :controller do
             it{
                 user.organization = nil
                 
-                
-
                 allow_any_instance_of(Organization).to receive(:save).and_return(true)
                 allow_any_instance_of(User).to receive(:save).and_return(true)
-                allow_any_instance_of(Organization).to receive(:email).and_return('fakeEmail@example.com')
+                allow_any_instance_of(UserMailer).to receive(:new_organization_application).and_return(false)
 
                 post(:create, params: { id: 2, organization: attributes_for(:defaultOrganization) })
                 expect(response).to redirect_to(organization_application_submitted_path)
@@ -80,15 +78,12 @@ RSpec.describe OrganizationsController, type: :controller do
 
                 allow_any_instance_of(Organization).to receive(:save).and_return(false)
                 allow_any_instance_of(User).to receive(:save).and_return(false)
-                allow_any_instance_of(Organization).to receive(:email).and_return('fakeEmail@example.com')
+                allow_any_instance_of(UserMailer).to receive(:new_organization_application).and_return(false)
 
                 post(:create, params: { id: 2, organization: attributes_for(:defaultOrganization) })
                 expect(response).to be_successful
             }
-
         end
-
-
     end
 
     context "as an admin" do
