@@ -114,7 +114,7 @@ RSpec.describe OrganizationsController, type: :controller do
             it {
                 expect(post(:reject, params: { id: organization.id, organization: attributes_for(:defaultOrganization) } )).to redirect_to(organizations_path)
             }
-
+            
             it {
                 expect_any_instance_of(Organization).to receive(:save).and_return(false)
                 expect(post(:reject, params: { id: organization.id, organization: attributes_for(:defaultOrganization) } )).to redirect_to(organization_path)

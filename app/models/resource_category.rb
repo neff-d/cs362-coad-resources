@@ -1,3 +1,8 @@
+#   Resource Category
+#   Represents the various categories of assistance than users can request and
+#   that organizations can fulfil (medical, animal rescue, snow removal etc.)
+#   Can be activated or deactivated by an admin
+
 class ResourceCategory < ApplicationRecord
 
   has_and_belongs_to_many :organizations
@@ -29,5 +34,4 @@ class ResourceCategory < ApplicationRecord
   def to_s
     name
   end
-
 end

@@ -1,3 +1,8 @@
+#   Organization
+#   Represents nonprofit/aid organization that is in the COAD network
+#   New organizations submit an application where it is then either approved or rejected by an admin
+#   Once approved, it can be assigned to one or more Resource Categories and given Tickets that represent jobs/tasks
+
 class Organization < ApplicationRecord
 
   attr_accessor :agreement_one, :agreement_two, :agreement_three, :agreement_four, :agreement_five, :agreement_six, :agreement_seven, :agreement_eight

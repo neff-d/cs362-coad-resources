@@ -1,3 +1,9 @@
+#   Ticket
+#   Represents an individual request by a user for assistance, which is fulfilled by an Organization
+#   Can belong to a Region, Resource Category, or be captured by an approved Organization
+#   When a user submits a request for assistance, it generates an open Ticket
+#   After an Organization captures and fulfils the request, the Ticket is closed
+
 class Ticket < ApplicationRecord
 
   belongs_to :region

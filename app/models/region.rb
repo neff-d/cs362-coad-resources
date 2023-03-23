@@ -1,3 +1,8 @@
+#   Region
+#   Represents a local area in Central Oregon such as Bend, La Pine, etc.
+#   Can be assigned 1 or more Tickets, which represent requests by users for assistance related
+#   to a Resource Category
+
 class Region < ApplicationRecord
 
   has_many :tickets

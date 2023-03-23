@@ -1,3 +1,8 @@
+#   User
+#   Represents a user with a COAD account
+#   Can be 1 of 2 roles -- an admin user or an Organization
+#   Allowed different sets of privileges based on role
+
 class User < ApplicationRecord
 
   enum role: [:admin, :organization]
